@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 01:35:13 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 03:23:27 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:00:59 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void init_plane(char *s, t_minirt *minirt)
     char **tmp;
     char **tmp2;
     t_plane *pl;
-    t_objects o;
+    t_objects *o;
 
     (void)minirt;
     tmp = gc_split(s, ' ');
@@ -69,5 +69,6 @@ void init_plane(char *s, t_minirt *minirt)
     if (!tmp2)
         exit_error("Error\nMalloc failed in plane.c:67\nExiting...\n");
     o = create_obj(plane, pl, (t_vec3){ft_atof(tmp2[0]) / 255, ft_atof(tmp2[1]) / 255, ft_atof(tmp2[2]) / 255});
-    minirt->scene->objects[0] = o;
+    minirt->scene->nb_objects++;
+    ft_lstadd_back(&minirt->scene->objects, ft_lstnew(&o));
 }

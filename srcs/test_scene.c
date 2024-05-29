@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/29 16:40:33 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:05:51 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ void init_scene(char **map, t_minirt *minirt)
 	t->width = TEMP_WIDTH;
 	minirt->scene = t;
 	minirt->scene->nb_objects = 3;
+	minirt->scene->objects = ft_lstnew((void* )42);
 	init_everything(map,minirt);
 	
 }

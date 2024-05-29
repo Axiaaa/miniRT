@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 03:12:25 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:49:12 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ t_minirt	init_minirt(int argc, char **argv)
 
 void	free_scene(t_scene scene)
 {
-	int	i;
+	t_list *tmp;
 
-	if (!scene)
-		return ;
-	i = 0;
-	while (i < scene->nb_objects)
+	tmp = scene->objects;
+	while (tmp)
 	{
-		free(scene->objects[i].obj);
-		i++;
+		free(tmp->content);
+		free(tmp);
+		tmp = tmp->next;
 	}
 	free(scene);
 }

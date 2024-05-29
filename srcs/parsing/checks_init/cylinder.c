@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 03:27:16 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 03:37:08 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:07:35 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void init_cylinder(char *s, t_minirt *minirt)
     char **tmp;
     char **tmp2;
     t_cylinder *cy;
-    t_objects o;
+    t_objects *o;
 
     (void)minirt;
     tmp = gc_split(s, ' ');
@@ -76,9 +76,16 @@ void init_cylinder(char *s, t_minirt *minirt)
     if (!tmp2)
         exit_error("Error\nMalloc failed in cylinder.c:66\nExiting...\n");  
     cy->dir = normalize(&(t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])});
-    tmp2 = gc_split(tmp[5], ',');
-    if (!tmp2)
-        exit_error("Error\nMalloc failed in cylinder.c:70\nExiting...\n");
-    o = create_obj(cylinder, cy, (t_vec3){ft_atof(*tmp2) / 255, ft_atof(*(tmp2 + 1)) / 255, ft_atof(*(tmp2 + 2)) / 255});
-    minirt->scene->objects[2] = o;
+    o = NULL;
+    create_cylinder_obj(o, cy, tmp2, minirt);
+}
+
+void create_cylinder_obj(t_objects *o, t_cylinder *cy, char** tmp2, t_minirt *minirt)
+{
+    t_vec3 color;
+
+    color = (t_vec3){ft_atof(tmp2[0]) / 255, ft_atof(tmp2[1]) / 255, ft_atof(tmp2[2]) / 255};
+    o = create_obj(cylinder, cy, color);
+    ft_lstadd_back(&minirt->scene->objects, ft_lstnew(&o));
+    minirt->scene->nb_objects++;
 }

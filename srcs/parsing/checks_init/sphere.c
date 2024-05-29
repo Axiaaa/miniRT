@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:45:56 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 03:24:11 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:00:26 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void init_sphere(char *s, t_minirt *minirt)
     char **tmp;
     char **tmp2;
     t_sphere *sp;
-    t_objects o;
+    t_objects *o;
 
     (void)minirt;
     tmp = gc_split(s, ' ');
@@ -68,16 +68,18 @@ void init_sphere(char *s, t_minirt *minirt)
     if (!tmp2)
         exit_error("Error\nMalloc failed in sphere.c:66\nExiting...\n");
     o = create_obj(sphere, sp, (t_vec3){ft_atof(*tmp2) / 255, ft_atof(*(tmp2 + 1)) / 255, ft_atof(*(tmp2 + 2)) / 255});
-    minirt->scene->objects[1] = o;
+    ft_lstadd_back(&minirt->scene->objects, ft_lstnew(&o));
+    minirt->scene->nb_objects++;
 }
 
 
-t_objects create_obj(t_type type, void *obj, t_vec3 color)
+t_objects *create_obj(t_type type, void *obj, t_vec3 color)
 {
-    t_objects o;
+    t_objects *o;
 
-    o.obj_type = type;
-    o.obj = obj;
-    o.color = color;
+    o = malloc(sizeof(t_objects));
+    o->obj_type = type;
+    o->obj = obj;
+    o->color = color;
     return (o);
 }

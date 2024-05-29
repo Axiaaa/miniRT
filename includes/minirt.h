@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 16:45:54 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:06:11 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_light
 
 typedef struct s_scene
 {
-	t_objects	objects[10];
+	t_list		*objects;
 	int			nb_objects;
 	t_camera	cam;
 	t_light		light;
@@ -171,6 +171,7 @@ void	 	init_plane(char *s, t_minirt *minirt);
 void 		init_cylinder(char *s, t_minirt *minirt);
 void 		init_everything(char **map, t_minirt* minirt);
 void 		init_scene(char **map, t_minirt *minirt);
-t_objects 	create_obj(t_type type, void *obj, t_vec3 color);
+t_objects 	*create_obj(t_type type, void *obj, t_vec3 color);
+void 		create_cylinder_obj(t_objects *o, t_cylinder *cy, char** tmp2, t_minirt *minirt);
 
 #endif
