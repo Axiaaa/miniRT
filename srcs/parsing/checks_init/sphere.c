@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:45:56 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 17:00:26 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:52:54 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void init_sphere(char *s, t_minirt *minirt)
     if (!tmp2)
         exit_error("Error\nMalloc failed in sphere.c:66\nExiting...\n");
     o = create_obj(sphere, sp, (t_vec3){ft_atof(*tmp2) / 255, ft_atof(*(tmp2 + 1)) / 255, ft_atof(*(tmp2 + 2)) / 255});
-    ft_lstadd_back(&minirt->scene->objects, ft_lstnew(&o));
+    ft_lstadd_back(&minirt->scene->objects, ft_lstnew(o));
     minirt->scene->nb_objects++;
 }
 

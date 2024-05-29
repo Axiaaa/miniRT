@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 17:06:11 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:28:59 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 #  define M_PI 3.14159265359f
 # endif
 
-# define TEMP_WIDTH 1920
-# define TEMP_HEIGHT 1080
+# define TEMP_WIDTH 1024
+# define TEMP_HEIGHT 640
 
 typedef enum s_alloc_enum
 {

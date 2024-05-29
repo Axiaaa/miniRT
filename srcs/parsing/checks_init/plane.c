@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 01:35:13 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 17:00:59 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:28:22 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void init_plane(char *s, t_minirt *minirt)
     tmp2 = gc_split(tmp[2], ',');
     if (!tmp2)
         exit_error("Error\nMalloc failed in plane.c:63\nExiting...\n");
-    pl->normal_vector = (t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])};
+    pl->normal_vector = normalized((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])});
     tmp2 = gc_split(tmp[3], ',');
     if (!tmp2)
         exit_error("Error\nMalloc failed in plane.c:67\nExiting...\n");
     o = create_obj(plane, pl, (t_vec3){ft_atof(tmp2[0]) / 255, ft_atof(tmp2[1]) / 255, ft_atof(tmp2[2]) / 255});
     minirt->scene->nb_objects++;
-    ft_lstadd_back(&minirt->scene->objects, ft_lstnew(&o));
+    ft_lstadd_back(&minirt->scene->objects, ft_lstnew(o));
 }
